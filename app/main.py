@@ -1,17 +1,10 @@
-flake8_error_prop_to_inner_prop = {
-    "code": "name",
-    "line_number": "line",
-    "column_number": "column",
-    "text": "message",
-    "source": "source"
-}
-
-
 def format_linter_error(error: dict) -> dict:
     return {
-        flake8_error_prop_to_inner_prop[flake_prop]: value
-        for (flake_prop, value) in [*error.items(), ("source", "flake8")]
-        if flake_prop in flake8_error_prop_to_inner_prop.keys()
+        "name": error["code"],
+        "line": error["line_number"],
+        "column": error["column_number"],
+        "message": error["text"],
+        "source": "flake8"
     }
 
 
